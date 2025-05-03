@@ -1,0 +1,83 @@
+# Main Configuration for LLM Fine-Tuning
+
+# Model settings
+model:
+  base_model: "meta-llama/Llama-3.1-8B-Instruct"
+  tokenizer: "meta-llama/Llama-3.1-8B-Instruct"
+  load_in_8bit: false
+  load_in_4bit: true
+  trust_remote_code: true
+  use_flash_attention: true
+  use_liger_kernels: false  # Advanced optimization
+
+# Fine-tuning method
+fine_tuning:
+  method: "qlora"  # Options: "full", "lora", "qlora", "spectrum"
+  lora:
+    r: 16
+    alpha: 32
+    dropout: 0.05
+    target_modules: ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+    bias: "none"
+    task_type: "CAUSAL_LM"
+  spectrum:
+    snr_threshold: 0.5
+    layers_to_finetune: "auto"  # Will be determined by SNR analysis
+  quantization:
+    bits: 4
+    bnb_4bit_compute_dtype: "bfloat16"
+    bnb_4bit_quant_type: "nf4"
+    bnb_4bit_use_double_quant: true
+
+# Training parameters
+training:
+  epochs: 3
+  micro_batch_size: 1
+  gradient_accumulation_steps: 16
+  learning_rate: 2.0e-4
+  lr_scheduler_type: "cosine"
+  warmup_ratio: 0.03
+  max_grad_norm: 0.3
+  optimizer: "paged_adamw_8bit"
+  weight_decay: 0.001
+  max_seq_length: 4096
+  gradient_checkpointing: true
+  mixed_precision: "bf16"  # Options: "no", "fp16", "bf16"
+
+# Dataset configuration
+dataset:
+  format: "alpaca"  # Options: "alpaca", "sharegpt", "oasst", "custom"
+  train_path: "data/train.json"
+  eval_path: "data/eval.json"
+  preprocessing:
+    add_eos_token: true
+    add_bos_token: false
+    use_chat_template: true
+
+# Distributed training
+distributed:
+  use_deepspeed: true
+  deepspeed_config: "config/ds_config.json"
+  zero_stage: 2
+  gradient_accumulation_steps: 16
+
+# Logging and checkpoints
+output:
+  output_dir: "models/runs"
+  logging_steps: 10
+  eval_steps: 100
+  save_steps: 500
+  save_total_limit: 5
+  push_to_hub: false
+  hub_model_id: null
+
+# Evaluation settings
+evaluation:
+  do_eval: true
+  eval_batch_size: 8
+  eval_strategy: "steps"
+  eval_steps: 200
+  benchmarks:
+    - "lm-evaluation-harness"
+    - "domain-specific-eval"
+    - "human-eval"
