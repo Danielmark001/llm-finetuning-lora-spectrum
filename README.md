@@ -1,4 +1,4 @@
-# Advanced LLM Fine-Tuning Framework
+# LLM Fine-Tuning Framework
 
 A comprehensive framework for efficient fine-tuning of large language models using state-of-the-art techniques.
 
@@ -20,7 +20,7 @@ A comprehensive framework for efficient fine-tuning of large language models usi
   - FSDP (Fully Sharded Data Parallel) support
   - Multi-node configuration
 
-- **Advanced Evaluation**:
+- **Evaluation**:
   - Perplexity calculation
   - Integration with LM Evaluation Harness
   - Domain-specific evaluation
