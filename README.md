@@ -5,18 +5,21 @@ A framework for parameter-efficient fine-tuning of large language models with si
 ## Core Features
 
 - **Efficiency-Transformer**:
+
   - Parameter-efficient fine-tuning system with adaptive layer selection
   - Dynamic rank allocation based on layer importance
   - Gradient-based pruning during training
   - Cross-layer parameter sharing mechanisms
 
 - **Advanced Pruning Techniques**:
+
   - Structured sparsity with automated threshold determination
   - Magnitude-based weight pruning with importance scoring
   - Progressive layer dropout during training
   - Quantization-aware pruning for compressed deployment
 
 - **Hybrid LoRA-Adapter Approach**:
+
   - Combined benefits of LoRA and Adapter-based methods
   - 8-bit quantization with calibration for inference
   - Mixed-precision training with adaptive bit allocation
@@ -46,7 +49,7 @@ pip install flash-attn --no-build-isolation
 
 ### 1. Prepare your dataset
 
-Prepare your dataset in one of the supported formats (Alpaca, ShareGPT). 
+Prepare your dataset in one of the supported formats (Alpaca, ShareGPT).
 
 ### 2. Configure training
 
@@ -64,14 +67,22 @@ model:
     method: "magnitude_progressive"
 
 fine_tuning:
-  method: "efficiency_transformer"  # Options: "full", "lora", "qlora", "spectrum", "efficiency_transformer"
+  method: "efficiency_transformer" # Options: "full", "lora", "qlora", "spectrum", "efficiency_transformer"
   lora:
     r: 16
     alpha: 32
     dropout: 0.05
-    target_modules: ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+    target_modules:
+      [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj",
+      ]
     dynamic_rank: true
-
 # Additional configuration...
 ```
 
