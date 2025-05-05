@@ -1,0 +1,129 @@
+{
+  "dataset_name": "medical_domain_evaluation",
+  "version": "1.0.0",
+  "description": "Evaluation dataset for medical domain NLP tasks",
+  "citation": "Artemis Project Medical Domain Benchmark, 2025",
+  "examples": [
+    {
+      "id": "med-qa-001",
+      "type": "multiple_choice",
+      "question": "Which of the following is NOT a common symptom of myocardial infarction?",
+      "choices": [
+        "Chest pain radiating to the left arm",
+        "Shortness of breath",
+        "Diaphoresis (sweating)",
+        "Bilateral lower extremity edema"
+      ],
+      "correct_answer": 3,
+      "explanation": "Bilateral lower extremity edema is more commonly associated with congestive heart failure rather than acute myocardial infarction.",
+      "difficulty": "medium",
+      "tags": ["cardiology", "diagnosis", "symptoms"]
+    },
+    {
+      "id": "med-qa-002",
+      "type": "multiple_choice",
+      "question": "Which medication class is contraindicated in patients with severe renal impairment (GFR < 30 mL/min)?",
+      "choices": [
+        "ACE inhibitors",
+        "Metformin",
+        "Calcium channel blockers",
+        "Corticosteroids"
+      ],
+      "correct_answer": 1,
+      "explanation": "Metformin is contraindicated in patients with severe renal impairment due to increased risk of lactic acidosis.",
+      "difficulty": "medium",
+      "tags": ["pharmacology", "renal", "contraindications"]
+    },
+    {
+      "id": "med-qa-003",
+      "type": "multiple_choice",
+      "question": "In interpreting arterial blood gases, which combination indicates respiratory acidosis with metabolic compensation?",
+      "choices": [
+        "Low pH, high PaCO2, high HCO3-",
+        "Low pH, low PaCO2, low HCO3-",
+        "High pH, high PaCO2, high HCO3-",
+        "High pH, low PaCO2, high HCO3-"
+      ],
+      "correct_answer": 0,
+      "explanation": "Respiratory acidosis is indicated by high PaCO2 leading to low pH. Metabolic compensation involves retention of bicarbonate (high HCO3-) to normalize pH.",
+      "difficulty": "hard",
+      "tags": ["pulmonology", "acid-base", "laboratory"]
+    },
+    {
+      "id": "med-gen-001",
+      "type": "generation",
+      "instruction": "Generate a differential diagnosis for a 68-year-old male presenting with acute onset shortness of breath, pleuritic chest pain, and recent air travel.",
+      "reference": "The differential diagnosis should include: pulmonary embolism (high probability given recent air travel), acute coronary syndrome, pneumonia, pneumothorax, acute exacerbation of COPD or asthma, and aortic dissection. Pulmonary embolism should be emphasized given the risk factor of recent air travel (immobility) combined with the classic presentation of pleuritic chest pain and dyspnea.",
+      "evaluation_criteria": ["completeness", "clinical_relevance", "prioritization", "reasoning"],
+      "tags": ["pulmonology", "emergency", "differential_diagnosis"]
+    },
+    {
+      "id": "med-gen-002",
+      "type": "generation",
+      "instruction": "Explain the mechanism of action of Sodium-Glucose Cotransporter-2 (SGLT2) inhibitors in the treatment of type 2 diabetes mellitus.",
+      "reference": "SGLT2 inhibitors act by inhibiting sodium-glucose cotransporter 2 in the proximal convoluted tubule of the kidney. This transporter is responsible for approximately 90% of glucose reabsorption in the kidney. By inhibiting SGLT2, these medications reduce glucose reabsorption and increase urinary glucose excretion, thereby lowering blood glucose levels independent of insulin. This mechanism also leads to caloric loss, promoting weight reduction, and osmotic diuresis, which contributes to blood pressure reduction. Additionally, SGLT2 inhibitors have demonstrated cardiovascular and renal protective effects beyond their glucose-lowering properties.",
+      "evaluation_criteria": ["accuracy", "completeness", "clinical_relevance", "clarity"],
+      "tags": ["endocrinology", "pharmacology", "diabetes"]
+    },
+    {
+      "id": "med-gen-003",
+      "type": "generation",
+      "instruction": "Describe the Glasgow Coma Scale, its components, scoring system, and clinical interpretation.",
+      "reference": "The Glasgow Coma Scale (GCS) is a neurological assessment tool used to evaluate consciousness level. It comprises three components: Eye Opening (scored 1-4), Verbal Response (scored 1-5), and Motor Response (scored 1-6). The total GCS score ranges from 3 (worst) to 15 (best). Eye Opening: 4=spontaneous, 3=to voice, 2=to pain, 1=none. Verbal Response: 5=oriented, 4=confused, 3=inappropriate words, 2=incomprehensible sounds, 1=none. Motor Response: 6=obeys commands, 5=localizes pain, 4=withdraws from pain, 3=abnormal flexion, 2=abnormal extension, 1=none. Clinical interpretation: 13-15 indicates mild brain injury, 9-12 moderate injury, and 3-8 severe brain injury, with scores ≤8 typically indicating coma requiring airway protection.",
+      "evaluation_criteria": ["accuracy", "completeness", "clinical_relevance", "clarity"],
+      "tags": ["neurology", "assessment", "emergency"]
+    },
+    {
+      "id": "med-rel-001",
+      "type": "relevance",
+      "context": "A 45-year-old female presents with recurrent episodes of palpitations, tremors, heat intolerance, and unintentional weight loss of 10 pounds over the past 3 months despite increased appetite. Physical examination reveals tachycardia (heart rate 110 bpm), fine tremor of the outstretched hands, and mild exophthalmos.",
+      "query": "What is the most likely diagnosis and what initial laboratory test would be most appropriate?",
+      "relevant_response": "The most likely diagnosis is hyperthyroidism, specifically Graves' disease given the constellation of symptoms (palpitations, tremors, heat intolerance, weight loss despite increased appetite) and clinical signs (tachycardia, fine tremor, and exophthalmos). The most appropriate initial laboratory test would be thyroid function tests, specifically TSH (thyroid stimulating hormone) and free T4 (thyroxine) levels. In Graves' disease, TSH would be suppressed (low) while free T4 would be elevated.",
+      "irrelevant_response": "The patient likely has anxiety disorder with somatic symptoms. The weight loss could be related to increased physical activity or stress-induced appetite changes. Tremors and palpitations are common manifestations of anxiety. I would recommend starting with a complete blood count and basic metabolic panel to rule out any underlying medical conditions, followed by consideration of anxiolytic medications such as benzodiazepines for symptomatic relief.",
+      "tags": ["endocrinology", "diagnosis", "laboratory"]
+    },
+    {
+      "id": "med-rel-002",
+      "type": "relevance",
+      "context": "A 72-year-old male with a history of coronary artery disease, hypertension, and type 2 diabetes presents with progressive dyspnea on exertion, orthopnea, and bilateral lower extremity edema. Physical examination reveals jugular venous distension, bilateral crackles on lung auscultation, and 2+ pitting edema of the lower extremities to the knees.",
+      "query": "What is the most appropriate initial medication regimen for this patient?",
+      "relevant_response": "This patient presents with signs and symptoms consistent with heart failure (dyspnea on exertion, orthopnea, jugular venous distension, pulmonary crackles, and peripheral edema). The initial medication regimen should include a loop diuretic such as furosemide for volume management, an ACE inhibitor or ARB for afterload reduction and cardioprotection (considering his diabetes), a beta-blocker (carvedilol, metoprolol succinate, or bisoprolol) for mortality benefit, and potentially spironolactone if he has reduced ejection fraction without significant renal dysfunction. Close monitoring of renal function and electrolytes is essential, especially given his diabetic status.",
+      "irrelevant_response": "The patient should be started on broad-spectrum antibiotics immediately, as the bilateral crackles and lower extremity edema suggest community-acquired pneumonia with possible sepsis. I recommend starting with intravenous ceftriaxone and azithromycin to cover typical and atypical organisms. Blood cultures should be obtained before antibiotic administration, and the patient should be assessed for the need for vasopressors if hypotension develops.",
+      "tags": ["cardiology", "pharmacology", "heart_failure"]
+    },
+    {
+      "id": "med-ent-001",
+      "type": "entity_extraction",
+      "text": "Patient is a 56-year-old male with PMH significant for HTN, T2DM, and CAD s/p CABG in 2021 who presents with sudden onset chest pain that began while watching TV. Pain is described as crushing, 8/10 in severity, radiating to the left arm and jaw, and associated with diaphoresis and nausea. VS: BP 165/95, HR 102, RR 22, T 37.1°C, O2 sat 94% on RA. Labs notable for Troponin I 2.3 ng/mL, WBC 9.8, Hgb 13.5, BNP 350. EKG shows 2mm ST elevation in leads V2-V4.",
+      "entities": [
+        {"text": "HTN", "type": "condition", "normalized": "hypertension"},
+        {"text": "T2DM", "type": "condition", "normalized": "type 2 diabetes mellitus"},
+        {"text": "CAD", "type": "condition", "normalized": "coronary artery disease"},
+        {"text": "CABG", "type": "procedure", "normalized": "coronary artery bypass graft"},
+        {"text": "chest pain", "type": "symptom", "normalized": "chest pain"},
+        {"text": "crushing", "type": "descriptor", "normalized": "crushing pain"},
+        {"text": "radiating to the left arm and jaw", "type": "symptom", "normalized": "pain radiation"},
+        {"text": "diaphoresis", "type": "symptom", "normalized": "sweating"},
+        {"text": "nausea", "type": "symptom", "normalized": "nausea"},
+        {"text": "BP 165/95", "type": "vital", "normalized": "blood pressure 165/95 mmHg"},
+        {"text": "HR 102", "type": "vital", "normalized": "heart rate 102 bpm"},
+        {"text": "RR 22", "type": "vital", "normalized": "respiratory rate 22 breaths/min"},
+        {"text": "T 37.1°C", "type": "vital", "normalized": "temperature 37.1°C"},
+        {"text": "O2 sat 94%", "type": "vital", "normalized": "oxygen saturation 94%"},
+        {"text": "Troponin I 2.3 ng/mL", "type": "lab", "normalized": "troponin I 2.3 ng/mL"},
+        {"text": "WBC 9.8", "type": "lab", "normalized": "white blood cell count 9.8 x10^9/L"},
+        {"text": "Hgb 13.5", "type": "lab", "normalized": "hemoglobin 13.5 g/dL"},
+        {"text": "BNP 350", "type": "lab", "normalized": "brain natriuretic peptide 350 pg/mL"},
+        {"text": "2mm ST elevation in leads V2-V4", "type": "finding", "normalized": "ST elevation myocardial infarction"}
+      ],
+      "tags": ["cardiology", "emergency", "entity_recognition"]
+    },
+    {
+      "id": "med-sum-001",
+      "type": "summarization",
+      "text": "Mr. Johnson is a 63-year-old male with a past medical history significant for hypertension (diagnosed 10 years ago, currently on lisinopril 20mg daily), hyperlipidemia (on atorvastatin 40mg daily), type 2 diabetes mellitus (diagnosed 5 years ago, hemoglobin A1c 7.2% three months ago, on metformin 1000mg BID), and coronary artery disease status post myocardial infarction 2 years ago with placement of drug-eluting stents to the left anterior descending and circumflex arteries (on aspirin 81mg daily and clopidogrel 75mg daily). He presents today with complaints of progressive shortness of breath over the past month, now occurring with minimal exertion such as walking across a room. He also reports orthopnea requiring three pillows to sleep and bilateral lower extremity swelling. He denies chest pain, palpitations, syncope, or fever. Review of systems is positive for fatigue, decreased exercise tolerance, and occasional dry cough, negative for weight changes, nausea, vomiting, abdominal pain, or changes in urination. Physical exam reveals a blood pressure of 142/86 mmHg, heart rate 88 beats per minute, respiratory rate 20 breaths per minute, temperature 37.0°C, and oxygen saturation of 93% on room air. Jugular venous pressure is elevated to 10cm. Cardiac exam reveals a regular rate and rhythm with an S3 gallop. Lung exam demonstrates bilateral crackles in the lower third of lung fields. Abdominal exam is unremarkable. There is 2+ pitting edema to mid-shin bilaterally. Laboratory studies show sodium 138 mEq/L, potassium 4.3 mEq/L, chloride 102 mEq/L, bicarbonate 24 mEq/L, BUN 32 mg/dL, creatinine 1.4 mg/dL (baseline 1.1 mg/dL), glucose 132 mg/dL, hemoglobin 13.1 g/dL, WBC 7.2 x 10^9/L, platelets 210 x 10^9/L, BNP 850 pg/mL, and troponin I 0.04 ng/mL. Electrocardiogram shows normal sinus rhythm with left ventricular hypertrophy and no acute ST-T wave changes. Chest X-ray reveals cardiomegaly, pulmonary vascular congestion, and small bilateral pleural effusions.",
+      "ideal_summary": "63-year-old male with hypertension, hyperlipidemia, type 2 diabetes, and CAD status post MI with stenting presents with progressive dyspnea on exertion, orthopnea, and lower extremity edema. Exam shows elevated JVP, S3 gallop, bilateral pulmonary crackles, and bilateral lower extremity edema. Labs notable for mildly elevated creatinine from baseline and significantly elevated BNP. ECG shows LVH without acute changes. CXR demonstrates cardiomegaly, pulmonary congestion, and bilateral pleural effusions. Clinical presentation is consistent with decompensated heart failure.",
+      "tags": ["cardiology", "heart_failure", "summarization"]
+    }
+  ]
+}

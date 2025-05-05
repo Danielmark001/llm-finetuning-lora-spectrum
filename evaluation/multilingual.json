@@ -1,0 +1,143 @@
+{
+  "dataset_name": "multilingual_support_evaluation",
+  "version": "1.0.0",
+  "description": "Evaluation dataset for multilingual NLP capabilities across diverse languages and tasks",
+  "citation": "Artemis Project Multilingual Support Benchmark, 2025",
+  "examples": [
+    {
+      "id": "multi-trans-es-001",
+      "type": "translation",
+      "source_language": "English",
+      "target_language": "Spanish",
+      "source_text": "The Artemis framework significantly improves model efficiency while maintaining high performance across domains. By implementing specialized pruning techniques and hybrid adapters, we've achieved remarkable speedups in inference time.",
+      "reference_translation": "El marco de trabajo Artemis mejora significativamente la eficiencia del modelo mientras mantiene un alto rendimiento en todos los dominios. Mediante la implementación de técnicas de poda especializadas y adaptadores híbridos, hemos logrado aceleraciones notables en el tiempo de inferencia.",
+      "evaluation_criteria": ["accuracy", "fluency", "terminology", "style"],
+      "tags": ["translation", "technical", "spanish"]
+    },
+    {
+      "id": "multi-trans-fr-001",
+      "type": "translation",
+      "source_language": "English",
+      "target_language": "French",
+      "source_text": "Customer support is critical for business success. Our multilingual system handles inquiries about product features, billing issues, and technical problems in multiple languages, ensuring all customers receive prompt assistance.",
+      "reference_translation": "Le service client est essentiel au succès d'une entreprise. Notre système multilingue traite les demandes concernant les fonctionnalités des produits, les problèmes de facturation et les problèmes techniques dans plusieurs langues, garantissant que tous les clients reçoivent une assistance rapide.",
+      "evaluation_criteria": ["accuracy", "fluency", "terminology", "style"],
+      "tags": ["translation", "customer_support", "french"]
+    },
+    {
+      "id": "multi-trans-de-001",
+      "type": "translation",
+      "source_language": "English",
+      "target_language": "German",
+      "source_text": "Legal documents require precise translation. This agreement establishes the terms and conditions governing the use of our software, including licensing restrictions, data privacy provisions, and warranty limitations.",
+      "reference_translation": "Rechtsdokumente erfordern eine präzise Übersetzung. Diese Vereinbarung legt die Bedingungen fest, die die Nutzung unserer Software regeln, einschließlich Lizenzbeschränkungen, Datenschutzbestimmungen und Garantieeinschränkungen.",
+      "evaluation_criteria": ["accuracy", "fluency", "terminology", "style"],
+      "tags": ["translation", "legal", "german"]
+    },
+    {
+      "id": "multi-qa-zh-001",
+      "type": "qa",
+      "language": "Chinese",
+      "context": "人工智能（AI）是计算机科学的一个分支，旨在创建能够模仿人类智能的系统。它包括多个子领域，如机器学习、自然语言处理、计算机视觉和机器人技术。机器学习使用算法从数据中学习并进行预测，而不需要明确编程。深度学习是机器学习的一个子集，使用多层神经网络处理大量数据。自然语言处理使计算机能够理解、解释和生成人类语言，而计算机视觉则关注如何使计算机从视觉输入中获取高级理解。",
+      "question": "深度学习与机器学习的关系是什么？",
+      "reference_answer": "深度学习是机器学习的一个子集，它使用多层神经网络来处理大量数据。与传统机器学习算法相比，深度学习能够自动从数据中学习更复杂的特征表示。",
+      "evaluation_criteria": ["accuracy", "relevance", "completeness", "language_quality"],
+      "tags": ["qa", "ai", "chinese"]
+    },
+    {
+      "id": "multi-qa-ru-001",
+      "type": "qa",
+      "language": "Russian",
+      "context": "Эффективность трансформера - это инновационный подход к оптимизации моделей машинного обучения. Он включает в себя ряд методов, таких как разреженное внимание, квантизация и дистилляция знаний. Разреженное внимание фокусируется только на наиболее важных связях, что снижает вычислительную нагрузку. Квантизация уменьшает точность представления весов модели, что приводит к меньшему размеру модели. Дистилляция знаний передает знания от большой модели к меньшей.",
+      "question": "Какие методы используются в подходе эффективности трансформера?",
+      "reference_answer": "В подходе эффективности трансформера используются несколько методов оптимизации: разреженное внимание, которое фокусируется только на важных связях; квантизация, уменьшающая точность представления весов модели; и дистилляция знаний, передающая знания от большой модели к меньшей.",
+      "evaluation_criteria": ["accuracy", "relevance", "completeness", "language_quality"],
+      "tags": ["qa", "ml_optimization", "russian"]
+    },
+    {
+      "id": "multi-ner-ja-001",
+      "type": "entity_recognition",
+      "language": "Japanese",
+      "text": "2024年5月15日、東京大学の佐藤教授は人工知能に関する画期的な研究を発表しました。この研究はアルテミス・フレームワークを使用して、効率的なモデル学習を実現しています。研究チームは日本科学技術振興機構（JST）から500万円の助成金を受けました。",
+      "entities": [
+        {"text": "2024年5月15日", "type": "date", "normalized": "2024-05-15"},
+        {"text": "東京大学", "type": "organization", "normalized": "University of Tokyo"},
+        {"text": "佐藤教授", "type": "person", "normalized": "Professor Sato"},
+        {"text": "人工知能", "type": "concept", "normalized": "artificial intelligence"},
+        {"text": "アルテミス・フレームワーク", "type": "technology", "normalized": "Artemis Framework"},
+        {"text": "日本科学技術振興機構", "type": "organization", "normalized": "Japan Science and Technology Agency"},
+        {"text": "JST", "type": "organization", "normalized": "JST"},
+        {"text": "500万円", "type": "money", "normalized": "5000000 JPY"}
+      ],
+      "evaluation_criteria": ["precision", "recall", "f1_score", "language_understanding"],
+      "tags": ["ner", "research", "japanese"]
+    },
+    {
+      "id": "multi-ner-hi-001",
+      "type": "entity_recognition",
+      "language": "Hindi",
+      "text": "14 अप्रैल, 2024 को, भारतीय प्रौद्योगिकी संस्थान दिल्ली के डॉ. गुप्ता ने आर्टेमिस तकनीक का उपयोग करके एक नए स्वास्थ्य सेवा एआई मॉडल की घोषणा की। यह परियोजना भारतीय चिकित्सा अनुसंधान परिषद और माइक्रोसॉफ्ट रिसर्च इंडिया द्वारा समर्थित है, जिसमें 2 करोड़ रुपये का निवेश किया गया है।",
+      "entities": [
+        {"text": "14 अप्रैल, 2024", "type": "date", "normalized": "2024-04-14"},
+        {"text": "भारतीय प्रौद्योगिकी संस्थान दिल्ली", "type": "organization", "normalized": "Indian Institute of Technology Delhi"},
+        {"text": "डॉ. गुप्ता", "type": "person", "normalized": "Dr. Gupta"},
+        {"text": "आर्टेमिस", "type": "technology", "normalized": "Artemis"},
+        {"text": "स्वास्थ्य सेवा एआई मॉडल", "type": "product", "normalized": "healthcare AI model"},
+        {"text": "भारतीय चिकित्सा अनुसंधान परिषद", "type": "organization", "normalized": "Indian Council of Medical Research"},
+        {"text": "माइक्रोसॉफ्ट रिसर्च इंडिया", "type": "organization", "normalized": "Microsoft Research India"},
+        {"text": "2 करोड़ रुपये", "type": "money", "normalized": "20000000 INR"}
+      ],
+      "evaluation_criteria": ["precision", "recall", "f1_score", "language_understanding"],
+      "tags": ["ner", "research", "hindi"]
+    },
+    {
+      "id": "multi-sent-ar-001",
+      "type": "sentiment",
+      "language": "Arabic",
+      "text": "نظام أرتميس هو إطار عمل رائع للذكاء الاصطناعي. لقد حسّن بشكل كبير من سرعة المعالجة وخفض استهلاك الذاكرة. ومع ذلك، فإن عملية التثبيت معقدة للغاية وتتطلب خبرة تقنية متقدمة. الوثائق غير كافية وتفتقر إلى أمثلة عملية.",
+      "sentiment_segments": [
+        {"text": "نظام أرتميس هو إطار عمل رائع للذكاء الاصطناعي.", "sentiment": "positive"},
+        {"text": "لقد حسّن بشكل كبير من سرعة المعالجة وخفض استهلاك الذاكرة.", "sentiment": "positive"},
+        {"text": "ومع ذلك، فإن عملية التثبيت معقدة للغاية وتتطلب خبرة تقنية متقدمة.", "sentiment": "negative"},
+        {"text": "الوثائق غير كافية وتفتقر إلى أمثلة عملية.", "sentiment": "negative"}
+      ],
+      "overall_sentiment": "mixed",
+      "evaluation_criteria": ["accuracy", "consistency", "language_understanding"],
+      "tags": ["sentiment", "product_review", "arabic"]
+    },
+    {
+      "id": "multi-sent-pt-001",
+      "type": "sentiment",
+      "language": "Portuguese",
+      "text": "O suporte ao cliente da empresa é excelente. Os representantes são sempre prestativos e resolvem os problemas rapidamente. No entanto, o site é lento e frequentemente apresenta erros durante o processo de compra. Isso causou muita frustração ao tentar finalizar meu pedido. Apesar dos problemas com o site, ainda recomendaria os produtos da empresa devido à sua alta qualidade.",
+      "sentiment_segments": [
+        {"text": "O suporte ao cliente da empresa é excelente.", "sentiment": "positive"},
+        {"text": "Os representantes são sempre prestativos e resolvem os problemas rapidamente.", "sentiment": "positive"},
+        {"text": "No entanto, o site é lento e frequentemente apresenta erros durante o processo de compra.", "sentiment": "negative"},
+        {"text": "Isso causou muita frustração ao tentar finalizar meu pedido.", "sentiment": "negative"},
+        {"text": "Apesar dos problemas com o site, ainda recomendaria os produtos da empresa devido à sua alta qualidade.", "sentiment": "positive"}
+      ],
+      "overall_sentiment": "mixed",
+      "evaluation_criteria": ["accuracy", "consistency", "language_understanding"],
+      "tags": ["sentiment", "customer_review", "portuguese"]
+    },
+    {
+      "id": "multi-gen-ko-001",
+      "type": "generation",
+      "language": "Korean",
+      "instruction": "인공지능 기반 고객 지원 시스템의 주요 기능과 이점에 대한 간략한 설명을 작성하세요.",
+      "reference_output": "인공지능 기반 고객 지원 시스템은 현대 기업에게 필수적인 도구입니다. 주요 기능으로는 자연어 처리를 통한 고객 질문 이해, 24/7 무중단 서비스 제공, 다국어 지원, 개인화된 응답 생성 등이 있습니다. 이러한 시스템의 주요 이점은 다음과 같습니다:\n\n1. 운영 효율성: 반복적인 질문에 자동으로 응답하여 인력 비용을 절감합니다.\n2. 응답 시간 단축: 즉각적인 응답으로 고객 만족도를 향상시킵니다.\n3. 확장성: 고객 문의량이 급증해도 일관된 서비스 품질을 유지합니다.\n4. 데이터 기반 개선: 고객 상호작용을 분석하여 제품과 서비스를 지속적으로 개선합니다.\n5. 다국어 지원: 언어 장벽 없이 전 세계 고객에게 서비스를 제공합니다.\n\n인공지능 기반 시스템은 단순히 인간 상담원을 대체하는 것이 아니라, 복잡한 문제는 인간 상담원에게 전달하는 보완적 역할을 수행하여 전반적인 고객 지원 경험을 향상시킵니다.",
+      "evaluation_criteria": ["relevance", "coherence", "fluency", "completeness"],
+      "tags": ["generation", "business", "korean"]
+    },
+    {
+      "id": "multi-gen-it-001",
+      "type": "generation",
+      "language": "Italian",
+      "instruction": "Scrivi una breve guida su come ottimizzare un modello di linguaggio utilizzando le tecniche del framework Artemis.",
+      "reference_output": "# Guida all'ottimizzazione di modelli linguistici con Artemis\n\nIl framework Artemis offre diverse tecniche innovative per ottimizzare i modelli di linguaggio, migliorandone l'efficienza senza compromettere le prestazioni.\n\n## 1. Implementazione dell'Efficiency-Transformer\n\nQuesto approccio riduce i costi di addestramento del 40%:\n- Configura l'attenzione sparsa per ridurre la complessità computazionale\n- Utilizza la compressione della matrice di attenzione\n- Implementa tecniche di memorizzazione efficiente\n\n## 2. Tecniche di potatura avanzate\n\nRiduci le dimensioni del modello del 60%:\n- Applica la potatura strutturata per eliminare interi componenti del modello\n- Utilizza metriche di importanza per identificare i pesi meno rilevanti\n- Implementa una pianificazione di potatura progressiva durante l'addestramento\n\n## 3. Approccio ibrido LoRA-Adapter\n\nOttieni un'accelerazione dell'inferenza di 2,7x:\n- Configura LoRA per i componenti di attenzione\n- Utilizza adattatori tradizionali per i layer FFN\n- Condividi parametri tra layer simili\n\n## 4. Valutazione personalizzata\n\nVerifica i miglioramenti nel tuo dominio specifico:\n- Crea benchmark personalizzati per il tuo caso d'uso\n- Misura sia le prestazioni che l'efficienza\n- Confronta con la linea di base per quantificare i miglioramenti\n\nSeguendo questa guida, potrai ottenere significativi miglioramenti nell'efficienza del tuo modello di linguaggio mantenendo elevate prestazioni.",
+      "evaluation_criteria": ["relevance", "coherence", "fluency", "completeness"],
+      "tags": ["generation", "technical", "italian"]
+    }
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "dataset_name": "legal_domain_evaluation",
+  "version": "1.0.0",
+  "description": "Evaluation dataset for legal domain NLP tasks",
+  "citation": "Artemis Project Legal Domain Benchmark, 2025",
+  "examples": [
+    {
+      "id": "legal-qa-001",
+      "type": "multiple_choice",
+      "question": "Under the doctrine of stare decisis, which of the following best describes the legal principle?",
+      "choices": [
+        "Courts are bound by the decisions of higher courts within the same jurisdiction",
+        "Judges must follow the original intent of the framers of the Constitution",
+        "Legal interpretations must prioritize the plain meaning of statutory text",
+        "The burden of proof in criminal cases is beyond a reasonable doubt"
+      ],
+      "correct_answer": 0,
+      "explanation": "Stare decisis is the doctrine that courts are bound by precedent, particularly decisions from higher courts within the same jurisdiction. This principle promotes stability and predictability in the legal system.",
+      "difficulty": "medium",
+      "tags": ["legal_principles", "precedent", "jurisprudence"]
+    },
+    {
+      "id": "legal-qa-002",
+      "type": "multiple_choice",
+      "question": "Which of the following is NOT typically a required element to establish a claim of negligence?",
+      "choices": [
+        "Duty of care",
+        "Breach of duty",
+        "Causation",
+        "Intent to harm"
+      ],
+      "correct_answer": 3,
+      "explanation": "Negligence requires duty, breach, causation, and damages. Intent to harm is not a required element of negligence; in fact, negligence specifically deals with unintentional conduct that falls below the standard of reasonable care.",
+      "difficulty": "medium",
+      "tags": ["tort_law", "negligence", "elements"]
+    },
+    {
+      "id": "legal-qa-003",
+      "type": "multiple_choice",
+      "question": "In contract law, what is the legal effect of a material misrepresentation made by one party that induces the other party to enter into a contract?",
+      "choices": [
+        "The contract remains valid but may be subject to reformation",
+        "The contract is void ab initio (from the beginning)",
+        "The contract is valid but unenforceable",
+        "The contract is voidable at the option of the misled party"
+      ],
+      "correct_answer": 3,
+      "explanation": "When a material misrepresentation induces a party to enter into a contract, the contract is voidable at the option of the misled party. This means the misled party can choose to rescind the contract or affirm it and potentially seek damages.",
+      "difficulty": "hard",
+      "tags": ["contract_law", "misrepresentation", "remedies"]
+    },
+    {
+      "id": "legal-gen-001",
+      "type": "generation",
+      "instruction": "Draft a clause for a commercial lease agreement addressing tenant improvements and alterations, including approval process, ownership of improvements, and restoration obligations.",
+      "reference": "IMPROVEMENTS AND ALTERATIONS\n\n8.1 Tenant Improvements. Tenant shall not make any alterations, additions, or improvements to the Premises ('Alterations') without first obtaining Landlord's prior written consent, which consent shall not be unreasonably withheld for non-structural Alterations that do not affect the building's systems or external appearance. Any request for approval shall include detailed plans and specifications. Landlord's approval may be conditioned upon Tenant's agreement to remove such Alterations at the termination of the Lease.\n\n8.2 Compliance Requirements. All Alterations shall be performed: (a) in a good and workmanlike manner; (b) in compliance with all applicable laws, codes, and regulations; (c) by licensed and insured contractors approved by Landlord; and (d) in accordance with all building rules and regulations. Tenant shall obtain all necessary permits and approvals prior to commencing any Alterations.\n\n8.3 Ownership of Improvements. Unless otherwise specified in Landlord's written approval, all Alterations made by Tenant shall become the property of Landlord upon installation and shall remain on the Premises upon termination of this Lease without compensation to Tenant. However, Landlord may, by written notice prior to the termination of this Lease, require Tenant to remove any or all Alterations installed by Tenant and restore the Premises to its original condition, reasonable wear and tear excepted, at Tenant's sole expense.\n\n8.4 Mechanics' Liens. Tenant shall keep the Premises free from any mechanics', materialmen's, or other liens arising from any work performed, materials furnished, or obligations incurred by Tenant. Tenant shall provide Landlord with lien waivers from all contractors and subcontractors performing Alterations on the Premises.",
+      "evaluation_criteria": ["completeness", "legal_accuracy", "clarity", "practical_effectiveness"],
+      "tags": ["contract_drafting", "commercial_lease", "property_law"]
+    },
+    {
+      "id": "legal-gen-002",
+      "type": "generation",
+      "instruction": "Analyze whether the following scenario constitutes a valid contract, identifying the key elements and any potential defenses to enforcement: A homeowner verbally agrees to sell their house to a neighbor for $300,000, and the neighbor sends a $5,000 check as a 'deposit' with a note saying 'deposit for house purchase as discussed.' The homeowner cashes the check but later receives a better offer and tells the neighbor the deal is off.",
+      "reference": "This scenario raises several contract law issues, particularly regarding formation and enforceability.\n\nContract Formation Analysis:\n- Offer: The homeowner's verbal agreement to sell the house for $300,000 constitutes an offer.\n- Acceptance: The neighbor's sending of the $5,000 deposit indicates acceptance of the terms.\n- Consideration: The promised exchange of the house for $300,000 represents consideration, and the $5,000 deposit is partial performance.\n- Intent to create legal relations: Both parties appear to have intended to enter a binding agreement based on their actions.\n\nEnforceability Issues:\n1. Statute of Frauds: The primary barrier to enforcement is the Statute of Frauds, which requires contracts for the sale of real property to be in writing. The verbal agreement alone is unenforceable under this doctrine.\n\n2. Partial Performance: The neighbor may argue that their partial performance (paying the $5,000 deposit) and the homeowner's acceptance of this payment creates an exception to the Statute of Frauds. Courts in some jurisdictions recognize this exception when there is clear evidence of an agreement and partial performance that is unequivocally referable to the contract.\n\n3. Promissory Estoppel: The neighbor might claim detrimental reliance on the homeowner's promise, especially if they took substantial actions in reliance on the agreement (such as selling their current home).\n\n4. The memo accompanying the check stating 'deposit for house purchase as discussed' may constitute a written memorandum of the agreement. However, it likely lacks sufficient detail (full terms, property description, etc.) to satisfy the Statute of Frauds requirement.\n\nConclusion: While there appears to be a valid contract in terms of basic elements (offer, acceptance, consideration, intent), the agreement likely fails the Statute of Frauds requirement for real property sales. The neighbor's strongest arguments would be partial performance and/or the check with memo as a written memorandum, but these may not be sufficient depending on the jurisdiction. The neighbor might be entitled to the return of their deposit and possibly reliance damages, but specific performance (forcing the sale) would be unlikely in most jurisdictions without more substantial written evidence of the agreement's terms.",
+      "evaluation_criteria": ["legal_analysis", "identification_of_issues", "application_of_law", "reasoned_conclusion"],
+      "tags": ["contract_law", "statute_of_frauds", "real_property"]
+    },
+    {
+      "id": "legal-gen-003",
+      "type": "generation",
+      "instruction": "Explain the concept of corporate veil piercing, including the factors courts consider when determining whether to pierce the corporate veil, and provide an example of a situation where this doctrine might be applied.",
+      "reference": "Corporate veil piercing is a legal doctrine that allows courts to disregard the limited liability protection of a corporation or LLC and hold shareholders or members personally liable for the entity's debts or obligations. This doctrine represents an exception to the fundamental principle that a corporation exists as a separate legal entity distinct from its owners.\n\nCourts generally consider the following factors when determining whether to pierce the corporate veil:\n\n1. Undercapitalization: Whether the corporation was formed with inadequate capital for its foreseeable business operations and liabilities.\n\n2. Failure to observe corporate formalities: Whether the owners disregarded corporate formalities such as maintaining separate books and records, holding regular board meetings, keeping corporate and personal assets separate, and maintaining proper documentation of corporate decisions.\n\n3. Commingling of funds and assets: Whether corporate and personal funds or assets are intermingled without clear accounting separation.\n\n4. Use of corporate funds for personal purposes: Whether corporate owners use corporate assets for personal expenses or withdraw corporate funds improperly.\n\n5. Absence of corporate records: Whether the corporation fails to maintain proper corporate records, minutes, resolutions, and documentation.\n\n6. Identical ownership and control: Whether the corporation is completely dominated by a single individual or parent company with no independent existence.\n\n7. Use of the corporate form to perpetrate fraud or injustice: Whether the corporate form was used specifically to commit fraud, violate statutory or common law duties, or otherwise avoid legal obligations.\n\n8. Enterprise liability/single enterprise theory: Whether multiple related corporations are operated as a single enterprise with common ownership, management, and business purpose.\n\nExample scenario where corporate veil piercing might apply:\n\nJohn Smith forms Smith Construction, Inc. with minimal capital ($1,000) despite engaging in high-risk construction projects. John uses the same bank account for both personal and business expenses, regularly withdraws corporate funds to pay his mortgage and personal credit cards, and fails to maintain any corporate records or hold board meetings. The company enters into a $100,000 contract to renovate a commercial building but performs defective work resulting in water damage. When the building owner sues and obtains a judgment against Smith Construction, Inc., the company has no assets to satisfy the judgment because John has transferred all company funds to his personal accounts.\n\nIn this scenario, a court would likely pierce the corporate veil and hold John personally liable because: (1) the corporation was undercapitalized for its business operations; (2) corporate formalities were ignored; (3) funds were commingled; (4) corporate assets were used for personal purposes; and (5) corporate records were not maintained. The court would likely find that allowing John to hide behind the corporate form would effectively sanction fraud and injustice.",
+      "evaluation_criteria": ["legal_accuracy", "completeness", "clarity", "practical_application"],
+      "tags": ["corporate_law", "limited_liability", "business_entities"]
+    },
+    {
+      "id": "legal-rel-001",
+      "type": "relevance",
+      "context": "A tech startup terminated an employee after they raised concerns in a company-wide email about potential securities violations related to how the company was reporting its financial metrics to investors. The employee had been with the company for 18 months and had consistently received positive performance reviews. The termination letter cited 'poor cultural fit' as the reason for dismissal. The employee now seeks legal advice.",
+      "query": "What potential legal claims might the employee have against the company?",
+      "relevant_response": "The employee may have several potential legal claims based on the facts provided:\n\n1. Whistleblower Retaliation: Under the Sarbanes-Oxley Act (SOX) and the Dodd-Frank Wall Street Reform and Consumer Protection Act, employees who report potential securities violations are protected from retaliation. The timing of the termination following the employee's complaint about financial reporting irregularities strongly suggests potential whistleblower retaliation.\n\n2. Wrongful Termination in Violation of Public Policy: Many states recognize a common law claim for wrongful termination when an employee is fired for reasons that violate established public policy, such as reporting potential illegal conduct.\n\n3. Breach of Implied Contract: The employee's consistently positive performance reviews may have created an implied promise of continued employment absent legitimate performance issues, potentially making the vague 'poor cultural fit' reason pretextual.\n\n4. Potential SEC Whistleblower Award: If the financial reporting concerns are legitimate securities violations, the employee may be eligible for a whistleblower award from the SEC if they report the violation and it leads to successful enforcement action.\n\nTo pursue these claims, the employee should document all relevant communications, gather performance reviews and evidence of the reported concerns, and consult with an employment attorney specializing in whistleblower protections and securities law. The attorney should investigate whether the company's financial reporting actually violated securities laws, as this would strengthen the whistleblower retaliation claim. Time is of the essence, as whistleblower claims under SOX must be filed with OSHA within 180 days of the adverse employment action.",
+      "irrelevant_response": "Based on the information provided, the employee likely has a strong case for age discrimination under the Age Discrimination in Employment Act (ADEA). If the employee is over 40 years old, which seems likely given their position at a tech startup, the vague reason for termination ('poor cultural fit') could be code for age bias, which is common in the technology industry that often values younger workers. The employee should immediately file a charge with the EEOC, which is a prerequisite for bringing an ADEA claim. Additionally, they should explore whether they have claims under the Americans with Disabilities Act if they had any medical conditions that the employer was aware of. The employee should also review the company's attendance policy, as many wrongful termination cases hinge on violations of established attendance protocols.",
+      "tags": ["employment_law", "whistleblower", "securities_law"]
+    },
+    {
+      "id": "legal-rel-002",
+      "type": "relevance",
+      "context": "Two neighboring landowners are in dispute over a strip of land between their properties. The deed descriptions are ambiguous regarding the boundary line. Landowner A has maintained a garden in the disputed area for the past 28 years. Landowner B recently purchased their property and, after having a survey done, erected a fence through the middle of the garden, claiming the survey establishes the true boundary. Both properties are located in a state with a 20-year adverse possession statute. Neither property has been surveyed since the original subdivision was created in 1955.",
+      "query": "What legal claims and defenses might be relevant to this boundary dispute?",
+      "relevant_response": "This boundary dispute involves several potential legal claims and defenses:\n\n1. Adverse Possession: Landowner A likely has a strong adverse possession claim to the disputed area. Having maintained a garden for 28 years exceeds the state's 20-year statutory period. To succeed, Landowner A would need to demonstrate that their possession was:
+   - Actual (actively used the land)
+   - Open and notorious (visible use)
+   - Exclusive (not shared with the true owner)
+   - Continuous for the statutory period
+   - Hostile/adverse (without permission)
+
+2. Boundary by Acquiescence: If prior owners of Landowner B's property knew of and did not object to Landowner A's use of the disputed area, this might establish a boundary by acquiescence in jurisdictions that recognize this doctrine.
+
+3. Boundary by Agreement: If there's evidence of an express or implied agreement between previous owners about the boundary location, this could establish a binding boundary regardless of deed descriptions.
+
+4. Estoppel: If Landowner B's predecessors in interest made representations about the boundary upon which Landowner A reasonably relied, Landowner B might be estopped from asserting the boundary in a different location.
+
+5. Survey Evidence: Landowner B can present the recent survey as evidence of the deed-described boundary. However, many courts hold that adverse possession claims can override deed descriptions when all elements are satisfied.
+
+6. Tacking: Landowner A may need to "tack" their adverse possession claim to previous owners' use if they haven't personally owned the property for the full statutory period.
+
+7. Color of Title: If Landowner A has a deed that (incorrectly) includes the disputed area, they may claim "color of title," which can strengthen their adverse possession claim in some jurisdictions.
+
+Defenses Landowner B might raise include challenging whether Landowner A's possession was truly hostile (perhaps it was permissive), continuous, or open and notorious enough to put a reasonable owner on notice. Landowner B might also argue that as a recent purchaser without actual notice of the adverse claim, they should be protected, though this defense typically fails against a completed adverse possession claim.
+
+The resolution will likely depend on the specific evidence of Landowner A's use, documentation of any agreements between previous owners, and the precise language in the deeds.",
+      "irrelevant_response": "In this situation, the key issue is clearly a violation of zoning ordinances. The first step should be to check the local municipal code to determine whether the garden violates any setback requirements or whether the fence constructed by Landowner B complies with fence height and location regulations. Many municipalities require permits for fence construction, and Landowner B may have failed to obtain the necessary approvals. Additionally, Landowner A might have a nuisance claim if the garden is causing any water runoff issues onto Landowner B's property. The recent survey should be evaluated by a third-party surveyor to confirm its accuracy. Both parties should also consider filing a homeowner's insurance claim, as boundary disputes are often covered under standard policies. The statute of limitations for property damage claims is typically much shorter than 20 years, usually around 2-3 years, so Landowner B may be time-barred from bringing any claims related to the longstanding garden.",
+      "tags": ["property_law", "adverse_possession", "boundary_disputes"]
+    },
+    {
+      "id": "legal-ent-001",
+      "type": "entity_extraction",
+      "text": "On January 15, 2024, Plaintiff Jane Doe, a resident of New York County, filed suit against ABC Corporation, a Delaware corporation with its principal place of business in California, in the United States District Court for the Southern District of New York. The complaint alleges violations of Title VII of the Civil Rights Act of 1964, breach of employment contract dated March 10, 2022, and intentional infliction of emotional distress. Plaintiff seeks compensatory damages of $750,000, punitive damages, attorney's fees pursuant to 42 U.S.C. § 2000e-5(k), and injunctive relief. The case has been assigned to Judge Samuel Wilson. On February 20, 2024, Defendant filed a motion to dismiss under FRCP 12(b)(6) for failure to state a claim upon which relief can be granted, and alternatively, a motion to transfer venue to the Northern District of California pursuant to 28 U.S.C. § 1404(a). A hearing is scheduled for March 15, 2024 at 10:00 AM in Courtroom 15A.",
+      "entities": [
+        {"text": "January 15, 2024", "type": "date", "normalized": "2024-01-15"},
+        {"text": "Jane Doe", "type": "person", "normalized": "plaintiff"},
+        {"text": "New York County", "type": "location", "normalized": "plaintiff_residence"},
+        {"text": "ABC Corporation", "type": "organization", "normalized": "defendant"},
+        {"text": "Delaware", "type": "location", "normalized": "defendant_incorporation"},
+        {"text": "California", "type": "location", "normalized": "defendant_principal_place_of_business"},
+        {"text": "United States District Court for the Southern District of New York", "type": "court", "normalized": "SDNY"},
+        {"text": "Title VII of the Civil Rights Act of 1964", "type": "statute", "normalized": "Title VII"},
+        {"text": "breach of employment contract", "type": "claim", "normalized": "contract_breach"},
+        {"text": "March 10, 2022", "type": "date", "normalized": "2022-03-10"},
+        {"text": "intentional infliction of emotional distress", "type": "claim", "normalized": "IIED"},
+        {"text": "compensatory damages", "type": "relief", "normalized": "compensatory_damages"},
+        {"text": "$750,000", "type": "amount", "normalized": "750000"},
+        {"text": "punitive damages", "type": "relief", "normalized": "punitive_damages"},
+        {"text": "attorney's fees", "type": "relief", "normalized": "attorney_fees"},
+        {"text": "42 U.S.C. § 2000e-5(k)", "type": "statute", "normalized": "Title VII fee provision"},
+        {"text": "injunctive relief", "type": "relief", "normalized": "injunction"},
+        {"text": "Judge Samuel Wilson", "type": "person", "normalized": "presiding_judge"},
+        {"text": "February 20, 2024", "type": "date", "normalized": "2024-02-20"},
+        {"text": "motion to dismiss", "type": "motion", "normalized": "dismiss"},
+        {"text": "FRCP 12(b)(6)", "type": "rule", "normalized": "failure_to_state_claim"},
+        {"text": "motion to transfer venue", "type": "motion", "normalized": "transfer_venue"},
+        {"text": "Northern District of California", "type": "court", "normalized": "NDCA"},
+        {"text": "28 U.S.C. § 1404(a)", "type": "statute", "normalized": "venue_transfer_provision"},
+        {"text": "March 15, 2024", "type": "date", "normalized": "2024-03-15"},
+        {"text": "10:00 AM", "type": "time", "normalized": "10:00"},
+        {"text": "Courtroom 15A", "type": "location", "normalized": "hearing_location"}
+      ],
+      "tags": ["civil_procedure", "employment_law", "entity_recognition"]
+    },
+    {
+      "id": "legal-sum-001",
+      "type": "summarization",
+      "text": "SETTLEMENT AGREEMENT AND RELEASE\n\nThis Settlement Agreement and Release (\"Agreement\") is entered into as of April 15, 2024 (the \"Effective Date\"), by and between XYZ Tech, Inc., a Delaware corporation with its principal place of business at 123 Innovation Way, San Francisco, California 94105 (\"Company\"), and John Smith, an individual residing at 456 Main Street, Apt 7B, San Francisco, California 94110 (\"Smith\"). The Company and Smith are collectively referred to herein as the \"Parties.\"\n\nRECITALS\n\nWHEREAS, Smith was employed by the Company as a Senior Software Engineer from June 1, 2020, until his separation from employment on December 15, 2023;\n\nWHEREAS, on January 30, 2024, Smith filed a Complaint in the Superior Court of California, County of San Francisco, Case No. CGC-24-598765, alleging causes of action for wrongful termination in violation of public policy, whistleblower retaliation under California Labor Code § 1102.5, age discrimination in violation of the California Fair Employment and Housing Act (\"FEHA\"), failure to prevent discrimination under FEHA, and failure to provide personnel records under California Labor Code § 1198.5 (the \"Lawsuit\");\n\nWHEREAS, the Company denies all allegations in the Lawsuit and any liability or wrongdoing of any kind;\n\nWHEREAS, the Parties desire to fully and finally resolve all claims and potential claims between them without the time, expense, and uncertainty of continued litigation;\n\nNOW, THEREFORE, in consideration of the mutual covenants and promises contained herein, and other good and valuable consideration, the receipt and sufficiency of which are hereby acknowledged, the Parties agree as follows:\n\n1. SETTLEMENT PAYMENT. Within fifteen (15) business days after the Effective Date of this Agreement and Smith's provision of a completed IRS Form W-9, the Company shall pay to Smith the total sum of Three Hundred Seventy-Five Thousand Dollars ($375,000.00) (the \"Settlement Payment\"), allocated as follows:\n\n   a. Two Hundred Twenty-Five Thousand Dollars ($225,000.00) in settlement of Smith's claims for alleged emotional distress damages, to be reported on IRS Form 1099-MISC.\n   \n   b. One Hundred Fifty Thousand Dollars ($150,000.00) in settlement of Smith's claims for alleged wage-related damages, subject to required tax withholdings and to be reported on IRS Form W-2.\n\n2. DISMISSAL OF LAWSUIT. Within five (5) business days after receipt of the Settlement Payment, Smith shall file a Request for Dismissal of the Lawsuit with prejudice.\n\n3. GENERAL RELEASE.\n\n   a. Smith's Release: Smith, on behalf of himself and his heirs, executors, administrators, and assigns, hereby irrevocably and unconditionally releases and forever discharges the Company and its current and former officers, directors, employees, shareholders, partners, agents, attorneys, predecessors, successors, parent and subsidiary entities, insurers, affiliates, and assigns (collectively, the \"Company Releasees\"), from any and all claims, complaints, liabilities, obligations, promises, agreements, controversies, damages, actions, causes of action, suits, rights, demands, costs, losses, debts, and expenses of any nature whatsoever, known or unknown, suspected or unsuspected, which Smith ever had, now has, or may hereafter claim to have against the Company Releasees, including without limitation all claims arising from or related to Smith's employment with the Company or the termination thereof.\n   \n   b. Company's Release: The Company, on behalf of itself and its current and former officers, directors, and employees, hereby irrevocably and unconditionally releases and forever discharges Smith from any and all claims, complaints, liabilities, obligations, promises, agreements, controversies, damages, actions, causes of action, suits, rights, demands, costs, losses, debts, and expenses of any nature whatsoever, known or unknown, suspected or unsuspected, which the Company ever had, now has, or may hereafter claim to have against Smith, including without limitation all claims arising from or related to Smith's employment with the Company or the termination thereof.\n\n4. WAIVER OF UNKNOWN CLAIMS. The Parties acknowledge that they are familiar with the provisions of California Civil Code Section 1542, which provides as follows:\n\n   \"A GENERAL RELEASE DOES NOT EXTEND TO CLAIMS THAT THE CREDITOR OR RELEASING PARTY DOES NOT KNOW OR SUSPECT TO EXIST IN HIS OR HER FAVOR AT THE TIME OF EXECUTING THE RELEASE AND THAT, IF KNOWN BY HIM OR HER, WOULD HAVE MATERIALLY AFFECTED HIS OR HER SETTLEMENT WITH THE DEBTOR OR RELEASED PARTY.\"\n\n   The Parties hereby expressly waive and relinquish all rights and benefits under Section 1542 and any law or legal principle of similar effect in any jurisdiction with respect to the releases granted herein.\n\n5. NON-DISCLOSURE. Smith agrees to keep the terms of this Agreement strictly confidential and shall not disclose any information concerning this Agreement to any person other than his spouse, attorneys, and tax advisors, who shall be informed of and bound by this confidentiality provision. Nothing in this provision prohibits Smith from disclosing the terms of this Agreement to a government agency in connection with any investigation conducted by such agency or from responding to a valid subpoena or court order.\n\n6. NON-DISPARAGEMENT. Smith agrees not to make any statements, written or verbal, that disparage or criticize the Company Releasees. The Company agrees to instruct its current officers and directors not to make any statements, written or verbal, that disparage or criticize Smith.\n\n7. REFERENCE. In response to inquiries from prospective employers, the Company shall provide only Smith's dates of employment, last position held, and final salary.\n\n8. GOVERNING LAW. This Agreement shall be governed by and construed in accordance with the laws of the State of California without regard to conflict of laws principles.\n\n9. ENTIRE AGREEMENT. This Agreement constitutes the entire understanding between the Parties concerning the subject matter hereof and supersedes all prior agreements, understandings, or negotiations.\n\nIN WITNESS WHEREOF, the Parties have executed this Agreement as of the Effective Date.\n\nXYZ TECH, INC.\n\nBy: [Signature]\nName: Sarah Johnson\nTitle: Chief Human Resources Officer\n\nJOHN SMITH\n\n[Signature]",
+      "ideal_summary": "Settlement Agreement and Release dated April 15, 2024, between XYZ Tech, Inc. and John Smith, a former Senior Software Engineer (employed June 2020-December 2023). Smith filed a lawsuit (Case No. CGC-24-598765) in San Francisco Superior Court alleging wrongful termination, whistleblower retaliation, age discrimination, failure to prevent discrimination, and failure to provide personnel records. The company denies all allegations. Settlement terms include: (1) $375,000 payment to Smith ($225,000 for emotional distress on 1099-MISC; $150,000 for wage-related claims on W-2); (2) Smith to dismiss lawsuit with prejudice; (3) mutual general release of all claims including waiver of California Civil Code Section 1542; (4) confidentiality provision with limited exceptions; (5) mutual non-disparagement; (6) neutral reference limited to dates of employment, position, and salary. Agreement is governed by California law.",
+      "tags": ["settlement_agreement", "employment_law", "summarization"]
+    }
+  ]
+}

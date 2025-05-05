@@ -1,0 +1,88 @@
+model:
+  base_model: "artemis-medical-base"
+  model_path: "models/medical/base"
+  
+hybrid_adapter:
+  enabled: true
+  lora_rank: 16
+  adapter_size: 128
+  target_modules: 
+    - "q_proj"
+    - "k_proj"
+    - "v_proj"
+    - "o_proj"
+    - "gate_proj"
+    - "up_proj"
+    - "down_proj"
+  apply_lora_to: 
+    - "q_proj"
+    - "k_proj"
+    - "v_proj"
+    - "o_proj"
+  shared_parameters: false
+  scaling_factor: 0.5
+
+pruning:
+  enabled: true
+  method: "structured_pruning"
+  sparsity: 0.45
+  schedule: "cubic"
+  start_step: 1000
+  end_step: 10000
+  
+efficiency_transformer:
+  enabled: true
+  attention_method: "flash_attention"
+  kv_cache_method: "quantized"
+  memory_efficient: true
+  
+inference:
+  max_tokens: 1024
+  temperature: 0.1
+  top_p: 0.92
+  top_k: 50
+  repetition_penalty: 1.05
+  batch_size: 8
+  
+medical_extensions:
+  terminology_recognition: true
+  evidence_linking: true
+  disclaimer_generation: true
+  entity_extraction: true
+  knowledge_sources: 
+    - "pubmed"
+    - "medical_guidelines"
+    - "drug_database"
+    - "medical_textbooks"
+  
+data:
+  training_data: "data/medical_qa_train.jsonl"
+  validation_data: "data/medical_qa_val.jsonl"
+  test_data: "data/medical_qa_test.jsonl"
+  
+training:
+  epochs: 3
+  batch_size: 16
+  learning_rate: 2e-5
+  warmup_steps: 500
+  weight_decay: 0.01
+  gradient_accumulation_steps: 4
+  fp16: true
+  evaluation_strategy: "steps"
+  eval_steps: 500
+  save_steps: 1000
+  logging_steps: 100
+  
+evaluation:
+  metrics:
+    - "accuracy"
+    - "f1"
+    - "precision"
+    - "recall"
+    - "medical_relevance"
+  domains:
+    - "general_medicine"
+    - "cardiology"
+    - "neurology"
+    - "oncology"
+    - "pediatrics"
