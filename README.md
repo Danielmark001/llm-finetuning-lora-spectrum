@@ -1,42 +1,39 @@
-# Advanced LLM Fine-Tuning Framework
+# Artemis – Adaptive Representation Tuning for Efficient Model Instruction Synthesis
 
-A comprehensive framework for efficient fine-tuning of large language models using state-of-the-art techniques.
+A framework for parameter-efficient fine-tuning of large language models with significant performance and efficiency improvements.
 
-## Features
+## Core Features
 
-- **Multiple Fine-Tuning Methods**:
-  - Full parameter fine-tuning
-  - LoRA (Low-Rank Adaptation)
-  - QLoRA (Quantized Low-Rank Adaptation)
-  - Spectrum (Signal-to-Noise Ratio based layer selection)
+- **Efficiency-Transformer**:
+  - Parameter-efficient fine-tuning system with adaptive layer selection
+  - Dynamic rank allocation based on layer importance
+  - Gradient-based pruning during training
+  - Cross-layer parameter sharing mechanisms
 
-- **Efficient Processing**:
-  - Support for multiple dataset formats (Alpaca, ShareGPT)
-  - Chat template support
-  - Optimized tokenization and batching
+- **Advanced Pruning Techniques**:
+  - Structured sparsity with automated threshold determination
+  - Magnitude-based weight pruning with importance scoring
+  - Progressive layer dropout during training
+  - Quantization-aware pruning for compressed deployment
 
-- **Distributed Training**:
-  - DeepSpeed integration
-  - FSDP (Fully Sharded Data Parallel) support
-  - Multi-node configuration
+- **Hybrid LoRA-Adapter Approach**:
+  - Combined benefits of LoRA and Adapter-based methods
+  - 8-bit quantization with calibration for inference
+  - Mixed-precision training with adaptive bit allocation
+  - Hardware-aware optimization for consumer GPUs
 
-- **Advanced Evaluation**:
-  - Perplexity calculation
-  - Integration with LM Evaluation Harness
-  - Domain-specific evaluation
-  - Human evaluation tools
-
-- **Inference and Deployment**:
-  - Interactive chat interface
-  - Batch inference
-  - Model deployment utilities
+- **Custom Evaluation Framework**:
+  - Domain-specific benchmarks with automated task generation
+  - Comparative analysis against full fine-tuning baselines
+  - Resource utilization tracking and optimization metrics
+  - Real-world application performance measurements
 
 ## Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/username/llm-finetuning-project.git
-cd llm-finetuning-project
+git clone https://github.com/Danielmark001/Artemis.git
+cd Artemis
 
 # Install dependencies
 pip install -r requirements.txt
@@ -49,17 +46,7 @@ pip install flash-attn --no-build-isolation
 
 ### 1. Prepare your dataset
 
-Prepare your dataset in one of the supported formats (Alpaca, ShareGPT). Example of Alpaca format:
-
-```json
-[
-  {
-    "instruction": "Tell me a joke.",
-    "input": "",
-    "output": "Why don't scientists trust atoms? Because they make up everything!"
-  }
-]
-```
+Prepare your dataset in one of the supported formats (Alpaca, ShareGPT). 
 
 ### 2. Configure training
 
@@ -69,16 +56,21 @@ Create or modify `config.yaml` with your desired training parameters:
 model:
   base_model: "meta-llama/Llama-3.1-8B-Instruct"
   tokenizer: "meta-llama/Llama-3.1-8B-Instruct"
-  load_in_4bit: true
-  use_flash_attention: true
+  load_in_8bit: true
+  hybrid_lora_adapter: true
+  pruning:
+    enabled: true
+    sparsity_target: 0.6
+    method: "magnitude_progressive"
 
 fine_tuning:
-  method: "qlora"  # Options: "full", "lora", "qlora", "spectrum"
+  method: "efficiency_transformer"  # Options: "full", "lora", "qlora", "spectrum", "efficiency_transformer"
   lora:
     r: 16
     alpha: 32
     dropout: 0.05
     target_modules: ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+    dynamic_rank: true
 
 # Additional configuration...
 ```
@@ -99,73 +91,113 @@ bash scripts/run_training.sh
 ### 4. Evaluate the model
 
 ```bash
-python scripts/inference.py --model_path path/to/model --adapter_path path/to/adapter --evaluate --eval_dataset path/to/eval_data.json --perplexity --benchmarks lm-evaluation-harness
+python scripts/inference.py --model_path path/to/model --adapter_path path/to/adapter --evaluate --eval_dataset path/to/eval_data.json --perplexity --benchmarks domain-specific
 ```
 
-### 5. Run inference
+### 5. Run optimized inference
 
-Interactive chat:
+For interactive chat:
 
 ```bash
-python scripts/inference.py --model_path path/to/model --adapter_path path/to/adapter --chat --load_in_4bit
+python scripts/inference.py --model_path path/to/model --adapter_path path/to/adapter --chat --load_in_8bit --hybrid_mode
 ```
 
-Batch inference:
+For batch inference:
 
 ```bash
-python scripts/inference.py --model_path path/to/model --adapter_path path/to/adapter --batch --input_file inputs.json --output_file outputs.json --load_in_4bit
+python scripts/inference.py --model_path path/to/model --adapter_path path/to/adapter --batch --input_file inputs.json --output_file outputs.json --load_in_8bit --hybrid_mode
 ```
+
+### 6. Run demonstration
+
+To see Artemis in action with a real-world example:
+
+```bash
+python scripts/demo.py --domain legal --model meta-llama/Llama-3.1-8B-Instruct
+```
+
+Available domains: `legal`, `medical`, and `customer-support`.
 
 ## Project Structure
 
 ```
-llm-finetuning-project/
+Artemis/
 ├── config/               # Configuration files
 ├── data/                 # Sample datasets and data utilities
 ├── docs/                 # Documentation
+│   ├── getting_started.md     # Quick start guide
+│   ├── efficiency_transformer.md  # Efficiency-Transformer documentation
+│   ├── pruning_techniques.md  # Pruning techniques documentation
+│   ├── hybrid_lora_adapter.md # Hybrid LoRA-Adapter documentation
+│   └── evaluation_framework.md # Evaluation framework documentation
 ├── evaluation/           # Evaluation datasets and benchmarks
 ├── models/               # Directory for saved models
 ├── notebooks/            # Tutorial notebooks
 ├── scripts/              # Utility scripts
-│   ├── distributed_setup.py  # Distributed training setup
-│   ├── inference.py      # Inference script
+│   ├── distributed_setup.py   # Distributed training setup
+│   ├── inference.py      # Inference script for optimized models
+│   ├── demo.py           # Demonstration script with real-world examples
 │   └── ...
 ├── src/                  # Core implementation
-│   ├── train.py          # Main training script
+│   ├── train.py          # Main training script with Artemis features
 │   └── utils/            # Utility modules
-│       ├── data_processing.py  # Dataset processing utilities
-│       ├── evaluation.py       # Evaluation utilities
-│       ├── optimization.py     # Optimization utilities
-│       └── spectrum.py         # Spectrum implementation
+│       ├── data_processing.py     # Dataset processing utilities
+│       ├── efficiency.py          # Efficiency-Transformer implementation
+│       ├── evaluation.py          # Evaluation utilities
+│       ├── hybrid_adapter.py      # Hybrid LoRA-Adapter implementation
+│       ├── optimization.py        # Optimization utilities
+│       ├── pruning.py             # Pruning techniques
+│       └── spectrum.py            # Spectrum implementation
 └── README.md
+```
+
+## Key Commands
+
+Here are some useful commands for working with Artemis:
+
+```bash
+# Create domain-specific benchmarks
+python src/train.py --create_benchmarks
+
+# Run evaluation only (no training)
+python src/train.py --config config.yaml --eval_only
+
+# Fine-tune with all Artemis optimizations
+python src/train.py --config config.yaml
+
+# Run optimized inference with 8-bit hybrid mode
+python scripts/inference.py --model_path path/to/model --adapter_path path/to/adapter --chat --load_in_8bit --hybrid_mode
+
+# Compare baseline vs. Artemis performance
+python scripts/demo.py --domain medical
 ```
 
 ## Documentation
 
 For detailed documentation, see the `docs/` directory:
 
-- [Installation Guide](docs/installation.md)
-- [Fine-Tuning Methods](docs/fine_tuning_methods.md)
-- [Configuration Options](docs/configuration.md)
-- [Dataset Preparation](docs/datasets.md)
-- [Evaluation Guide](docs/evaluation.md)
-- [Distributed Training](docs/distributed_training.md)
-- [Inference and Deployment](docs/inference.md)
+- [Getting Started Guide](docs/getting_started.md)
+- [Efficiency-Transformer Methods](docs/efficiency_transformer.md)
+- [Pruning Techniques](docs/pruning_techniques.md)
+- [Hybrid LoRA-Adapter Approach](docs/hybrid_lora_adapter.md)
+- [Custom Evaluation Framework](docs/evaluation_framework.md)
+- [Case Studies](docs/case_studies.md)
 
-## Tutorials
+## Citing Artemis
 
-Interactive tutorials are available in the `notebooks/` directory:
+If you use Artemis in your research, please cite:
 
-- [Fine-Tuning Tutorial](notebooks/fine_tuning_tutorial.ipynb)
-- [Data Preparation](notebooks/data_preparation.ipynb)
-- [Evaluation and Analysis](notebooks/evaluation.ipynb)
+```
+@misc{artemis2025,
+  author = {Your Name},
+  title = {Artemis: Adaptive Representation Tuning for Efficient Model Instruction Synthesis},
+  year = {2025},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://github.com/username/Artemis}}
+}
+```
 
 ## License
 
 This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-- The Spectrum method is based on the research paper: "Spectrum: Analyzing and Exploiting the Language Model's Frequency Domain for Parameter-Efficient Fine-Tuning"
-- LoRA implementation is based on the [PEFT](https://github.com/huggingface/peft) library from Hugging Face
-- Parts of the evaluation framework are inspired by the [LM Evaluation Harness](https://github.com/EleutherAI/lm-evaluation-harness)

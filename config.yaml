@@ -1,18 +1,19 @@
-# Main Configuration for LLM Fine-Tuning
+# Main Configuration for Artemis
 
 # Model settings
 model:
   base_model: "meta-llama/Llama-3.1-8B-Instruct"
   tokenizer: "meta-llama/Llama-3.1-8B-Instruct"
-  load_in_8bit: false
-  load_in_4bit: true
+  load_in_8bit: true
+  load_in_4bit: false
   trust_remote_code: true
   use_flash_attention: true
-  use_liger_kernels: false  # Advanced optimization
+  use_liger_kernels: true  # Advanced optimization
+  hybrid_lora_adapter: true  # New hybrid approach
 
 # Fine-tuning method
 fine_tuning:
-  method: "qlora"  # Options: "full", "lora", "qlora", "spectrum"
+  method: "efficiency_transformer"  # Options: "full", "lora", "qlora", "spectrum", "efficiency_transformer"
   lora:
     r: 16
     alpha: 32
@@ -20,14 +21,34 @@ fine_tuning:
     target_modules: ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
     bias: "none"
     task_type: "CAUSAL_LM"
+    dynamic_rank: true  # Dynamically allocate rank based on layer importance
   spectrum:
     snr_threshold: 0.5
     layers_to_finetune: "auto"  # Will be determined by SNR analysis
+  efficiency_transformer:
+    adaptive_layer_selection: true
+    cross_layer_parameter_sharing: true
+    importance_score_method: "gradient_based"
+    low_resource_mode: true
+    target_speedup: 2.7  # Target speedup for inference
   quantization:
-    bits: 4
-    bnb_4bit_compute_dtype: "bfloat16"
-    bnb_4bit_quant_type: "nf4"
-    bnb_4bit_use_double_quant: true
+    bits: 8
+    bnb_8bit_compute_dtype: "bfloat16"
+    bnb_8bit_quant_type: "symmetric"
+    bnb_8bit_use_double_quant: true
+    calibration: true
+
+# Pruning configuration
+pruning:
+  enabled: true
+  method: "magnitude_progressive"  # Options: "magnitude_progressive", "structured_sparsity", "layer_dropout"
+  initial_sparsity: 0.0
+  final_sparsity: 0.6  # Target 60% model size reduction
+  pruning_start: 0.2  # Start pruning after 20% of training
+  pruning_end: 0.8  # End pruning at 80% of training
+  pruning_interval: 50  # Apply pruning every 50 steps
+  importance_metric: "gradient_sensitivity"  # Options: "magnitude", "gradient_sensitivity", "activation"
+  quantization_aware: true  # Ensure pruning is compatible with quantization
 
 # Training parameters
 training:
@@ -43,6 +64,7 @@ training:
   max_seq_length: 4096
   gradient_checkpointing: true
   mixed_precision: "bf16"  # Options: "no", "fp16", "bf16"
+  gradient_based_pruning: true  # New gradient-based pruning during training
 
 # Dataset configuration
 dataset:
@@ -70,6 +92,7 @@ output:
   save_total_limit: 5
   push_to_hub: false
   hub_model_id: null
+  track_resource_usage: true  # Track GPU memory, CPU usage, etc.
 
 # Evaluation settings
 evaluation:
@@ -81,3 +104,12 @@ evaluation:
     - "lm-evaluation-harness"
     - "domain-specific-eval"
     - "human-eval"
+  custom_benchmarks:
+    - "medical-domain"
+    - "legal-domain"
+    - "multilingual-support"
+  baseline_comparison: true  # Compare with full fine-tuning baseline
+  resource_metrics: true  # Track memory usage, inference speed, etc.
+  performance_thresholds:
+    minimum_accuracy: 0.95  # Maintain 95% of full fine-tuning performance
+    maximum_speedup: 3.0  # Target speedup compared to baseline
