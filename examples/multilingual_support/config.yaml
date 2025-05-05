@@ -1,0 +1,168 @@
+model:
+  base_model: "artemis-multilingual-base"
+  model_path: "models/multilingual/base"
+  
+hybrid_adapter:
+  enabled: true
+  lora_rank: 12
+  adapter_size: 96
+  target_modules: 
+    - "q_proj"
+    - "k_proj"
+    - "v_proj"
+    - "o_proj"
+    - "gate_proj"
+    - "up_proj"
+    - "down_proj"
+  apply_lora_to: 
+    - "q_proj"
+    - "k_proj"
+    - "v_proj"
+    - "o_proj"
+  shared_parameters: true
+  scaling_factor: 0.5
+
+languages:
+  - code: "en"
+    name: "English"
+    adapter_path: "adapters/english"
+    is_default: true
+  - code: "es"
+    name: "Spanish"
+    adapter_path: "adapters/spanish"
+  - code: "fr"
+    name: "French"
+    adapter_path: "adapters/french"
+  - code: "de"
+    name: "German"
+    adapter_path: "adapters/german"
+  - code: "it"
+    name: "Italian"
+    adapter_path: "adapters/italian"
+  - code: "pt"
+    name: "Portuguese"
+    adapter_path: "adapters/portuguese"
+  - code: "ja"
+    name: "Japanese"
+    adapter_path: "adapters/japanese"
+  - code: "zh"
+    name: "Chinese (Simplified)"
+    adapter_path: "adapters/chinese_simplified"
+  - code: "ko"
+    name: "Korean"
+    adapter_path: "adapters/korean"
+  - code: "ru"
+    name: "Russian"
+    adapter_path: "adapters/russian"
+  - code: "ar"
+    name: "Arabic"
+    adapter_path: "adapters/arabic"
+  - code: "hi"
+    name: "Hindi"
+    adapter_path: "adapters/hindi"
+  
+language_specific_ranks:
+  "en": 16  # More parameters for high-resource languages
+  "es": 16
+  "fr": 14
+  "de": 14
+  "ja": 14
+  "zh": 14
+  "ko": 12
+  "ru": 12
+  "pt": 12
+  "it": 12
+  "ar": 10  # Fewer parameters for lower-resource languages
+  "hi": 10
+  
+shared_layers:
+  - "0"
+  - "1"
+  - "2"
+  - "3"
+  - "16"
+  - "17"
+  - "18"
+  - "19"
+  
+language_specific_layers:
+  - "4"
+  - "5"
+  - "6"
+  - "7"
+  - "8"
+  - "9"
+  - "10"
+  - "11"
+  - "12"
+  - "13"
+  - "14"
+  - "15"
+
+efficiency_transformer:
+  enabled: true
+  attention_method: "flash_attention"
+  kv_cache_method: "quantized"
+  memory_efficient: true
+  
+optimization:
+  quantization: "int4"
+  device_optimization: true
+  batching_strategy: "dynamic"
+  max_batch_size: 64
+  pruning: 
+    enabled: false
+    method: "structured_pruning"
+    sparsity: 0.3
+  
+inference:
+  max_tokens: 1024
+  temperature: 0.1
+  top_p: 0.92
+  top_k: 50
+  repetition_penalty: 1.05
+  batch_size: 16
+  
+support_extensions:
+  domain: "e-commerce"
+  enable_terminology_database: true
+  enable_sentiment_analysis: true
+  enable_intent_detection: true
+  enable_language_detection: true
+  response_templates_enabled: true
+  response_templates_path: "data/templates/"
+  terminology_database_path: "data/terminology.json"
+  
+data:
+  training_data: "data/multilingual_train.jsonl"
+  validation_data: "data/multilingual_val.jsonl"
+  test_data: "data/multilingual_test.jsonl"
+  
+training:
+  epochs: 3
+  batch_size: 16
+  learning_rate: 2e-5
+  warmup_steps: 500
+  weight_decay: 0.01
+  gradient_accumulation_steps: 4
+  fp16: true
+  evaluation_strategy: "steps"
+  eval_steps: 500
+  save_steps: 1000
+  logging_steps: 100
+  
+evaluation:
+  metrics:
+    - "accuracy"
+    - "f1"
+    - "precision"
+    - "recall"
+    - "cross_lingual_consistency"
+    - "cultural_appropriateness"
+  languages:
+    - "en"
+    - "es"
+    - "fr"
+    - "de"
+    - "zh"
+    - "ja"
