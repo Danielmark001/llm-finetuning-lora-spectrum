@@ -35,8 +35,8 @@ A framework for parameter-efficient fine-tuning of large language models with si
 
 ```bash
 # Clone the repository
-git clone https://github.com/Danielmark001/Artemis.git
-cd Artemis
+git clone https://github.com/Danielmark001/llm-finetuning-lora-spectrum.git
+cd llm-finetuning-lora-spectrum
 
 # Install dependencies
 pip install -r requirements.txt
@@ -194,20 +194,6 @@ For detailed documentation, see the `docs/` directory:
 - [Custom Evaluation Framework](docs/evaluation_framework.md)
 - [Case Studies](docs/case_studies.md)
 
-## Citing Artemis
-
-If you use Artemis in your research, please cite:
-
-```
-@misc{artemis2025,
-  author = {Your Name},
-  title = {Artemis: Adaptive Representation Tuning for Efficient Model Instruction Synthesis},
-  year = {2025},
-  publisher = {GitHub},
-  journal = {GitHub repository},
-  howpublished = {\url{https://github.com/username/Artemis}}
-}
-```
 
 ## License
 
